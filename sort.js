@@ -100,5 +100,3 @@ function lead_change() {
 		document.getElementById("lead_count").value = lead_count;
 	}
 }
-
-init();
