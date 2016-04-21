@@ -5,10 +5,14 @@ var count;
 var Button1 = document.getElementById("Button1");
 var Button2 = document.getElementById("Button2");
 
-function init() {
+function var_init() {
 	items = Array(0);
 	leaderboard = Array(lead_count);
-	leaderboard.fill("--");
+	try {
+		leaderboard.fill("--");
+	} catch (err) {
+		for (i = 0; i < lead_count; i++) { leaderboard[i] = "--"; }
+	}
 	dropped = Array(0);
 	update_leaderboard();
 	document.getElementById("lead_count").value = lead_count;
@@ -67,7 +71,7 @@ function single_comp(item1, item2, start, mid, end) {
 
 function add_items() {
 	// TODO: advanced checking
-	init();
+	var_init();
 	
 	var text = document.getElementById("input").value;
 	var new_items = text.split("\n");
