@@ -18,12 +18,16 @@ function var_init() {
 	document.getElementById("lead_count").value = lead_count;
 }
 
-function lead_insert(item, index) {
+function disable_buttons() {
 	Button1.innerText = "--";
 	Button2.innerText = "--";
 	
 	Button1.disabled = true;
 	Button2.disabled = true;
+}
+
+function lead_insert(item, index) {
+	disable_buttons();
 	
 	if (leaderboard[lead_count - 1] != "--") {
 			dropped.push(item);
@@ -87,7 +91,7 @@ function reset() {
 }
 
 function add_items() {
-	// TODO: advanced checking
+	disable_buttons();
 	var text = document.getElementById("input").value;
 	var new_items = text.split("\n");
 	
@@ -114,6 +118,7 @@ function add_items() {
 		}
 	}
 	
+	items = Array(0);
 	for (i = 0; i < new_items.length; i++) {
 		if (new_items[i] != "") {
 			items.push(new_items[i]);
