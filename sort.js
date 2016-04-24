@@ -69,15 +69,53 @@ function single_comp(item1, item2, start, mid, end) {
 	Button2.disabled = false;
 }
 
-function add_items() {
-	// TODO: advanced checking
+function reset() {
 	var_init();
 	
 	var text = document.getElementById("input").value;
 	var new_items = text.split("\n");
 	
 	for (i = 0; i < new_items.length; i++) {
-		if (new_items[i] != "") { // TODO: check for duplicates
+		if (new_items[i] != "") {
+			items.push(new_items[i]);
+		}
+	}
+	
+	if (items.length > 0) {
+		full_comp(items[0]);
+	}
+}
+
+function add_items() {
+	// TODO: advanced checking
+	var text = document.getElementById("input").value;
+	var new_items = text.split("\n");
+	
+	//check for removed items
+	//  if removed from leaderboard: reset if dropped items
+	//  if removed from dropped: remove from dropped
+	//remove items in leaderboard or dropped
+	//add remaing items
+	
+	for (c = 0; c < lead_count && leaderboard[c] != "--"; c++) {}
+	for (i = 0; i < c; i++) {
+		if (new_items.indexOf(leaderboard[i]) == -1) {
+			reset();
+			return;
+		} else {
+			new_items.splice(new_items.indexOf(leaderboard[i]), 1);
+		}
+	}
+	for (i = 0; i < dropped.length; i++) {
+		if (new_items.indexOf(dropped[i]) == -1) {
+			dropped.splice(i, 1);
+		} else {
+			new_items.splice(new_items.indexOf(dropped[i]), 1);
+		}
+	}
+	
+	for (i = 0; i < new_items.length; i++) {
+		if (new_items[i] != "") {
 			items.push(new_items[i]);
 		}
 	}
@@ -98,8 +136,32 @@ function update_leaderboard() {
 function lead_change() {
 	var value = document.getElementById("lead_count").value;
 	if (Number(value) > 0) {
+		var old = lead_count;
 		lead_count = Number(value);
-		add_items(); // TODO
+		
+		if (lead_count < old) {
+			for (c = 0; c < lead_count && leaderboard[c] != "--"; c++) {}
+			for (i = c; i < old; i++) {
+				dropped.push(leaderboard[i]);
+				leaderboard.splice(i, 1);
+				update_leaderboard();
+				if (items.length > 0) {
+					full_comp(items[0]);
+				}
+			}
+		} else if (lead_count > old) {
+			if (dropped.length > 0) {
+				reset();
+			} else {
+				for (i = old; i < lead_count; i++) {
+					leaderboard.push("--");
+				}
+				update_leaderboard();
+				if (items.length > 0) {
+					full_comp(items[0]);
+				}
+			}
+		}
 	} else {
 		document.getElementById("lead_count").value = lead_count;
 	}

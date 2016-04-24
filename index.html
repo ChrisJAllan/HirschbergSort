@@ -8,7 +8,7 @@
 <table>
 	<thead>
 		<tr><!-- Settings -->
-			<td><button class="red" onclick="add_items()">Reset</button></td>
+			<td><button class="red" onclick="reset()">Reset</button></td>
 			<td style="text-align: center;">
 				Leaderboard Count: <input id="lead_count" onchange="lead_change()" style="width: 3em;" />
 			</td>
@@ -50,6 +50,6 @@ Networking
 </table>
 <div id="descrip">A partial sort based on binary insertion. For a list of size <i>n</i> and a leaderboard of size <i>k</i>, it runs in <i>O(n log k)</i> time.</div>
 <script type="text/javascript" src="sort.js"></script>
-<script type="text/javascript">add_items();</script>
+<script type="text/javascript">reset();</script>
 </body>
 </html>
