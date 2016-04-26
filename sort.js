@@ -29,14 +29,16 @@ function disable_buttons() {
 function lead_insert(item, index) {
 	disable_buttons();
 	
-	if (leaderboard[lead_count - 1] != "--") {
-			dropped.push(item);
-	}
 	if (index < lead_count) {
+		if (leaderboard[lead_count - 1] != "--") {
+			dropped.push(leaderboard[lead_count - 1]);
+		}
 		for (i = lead_count - 1; i > index; i--) {
 			leaderboard[i] = leaderboard[i - 1];
 		}
 		leaderboard[index] = item;
+	} else {
+		dropped.push(item);
 	}
 	
 	update_leaderboard();
@@ -111,10 +113,10 @@ function add_items() {
 		}
 	}
 	for (i = 0; i < dropped.length; i++) {
-		if (new_items.indexOf(dropped[i]) == -1) {
-			dropped.splice(i, 1);
+		if ((ni = new_items.indexOf(dropped[i])) == -1) {
+			dropped.splice(i--, 1);
 		} else {
-			new_items.splice(new_items.indexOf(dropped[i]), 1);
+			new_items.splice(ni, 1);
 		}
 	}
 	
