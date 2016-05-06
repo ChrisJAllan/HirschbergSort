@@ -4,6 +4,7 @@ var leaderboard, dropped;
 var count;
 var Button1 = document.getElementById("Button1");
 var Button2 = document.getElementById("Button2");
+var min, mid, max;
 
 function var_init() {
 	items = Array(0);
@@ -18,12 +19,33 @@ function var_init() {
 	document.getElementById("lead_count").value = lead_count;
 }
 
-function disable_buttons() {
-	Button1.innerText = "--";
-	Button2.innerText = "--";
+function start_comp() {
+	if (items.length == 0) {
+		return;
+	}
 	
-	Button1.disabled = true;
-	Button2.disabled = true;
+	for (min = 0, max = 0; max < lead_count && leaderboard[max] != "--"; max++) {}
+	next_comp();
+}
+
+function next_comp() {
+	if (min == max) {
+		lead_insert(items[0], min);
+		return;
+	}
+	
+	mid = Math.floor((max + min) / 2);
+	enable_buttons();
+}
+
+function greater() {
+	max = mid;
+	next_comp();
+}
+
+function lessthan() {
+	min = mid + 1;
+	next_comp();
 }
 
 function lead_insert(item, index) {
@@ -44,35 +66,7 @@ function lead_insert(item, index) {
 	update_leaderboard();
 	
 	items.shift();
-	if (items.length > 0) {
-		full_comp(items[0]);
-	}
-}
-
-function full_comp(item) {
-	var i = 0;
-	for (; i < lead_count && leaderboard[i] != "--"; i++) {}
-	sub_comp(item, 0, i);
-}
-
-function sub_comp(item, start, end) {
-	if (start == end) {
-		lead_insert(item, start);
-	} else {
-		var middle = Math.floor((start + end) / 2);
-		single_comp(item, leaderboard[middle], start, middle, end);
-	}
-}
-
-function single_comp(item1, item2, start, mid, end) {
-	Button1.innerText = item1;
-	Button2.innerText = item2;
-	
-	Button1.onclick = function() { sub_comp(item1, start, mid); };
-	Button2.onclick = function() { sub_comp(item1, mid + 1, end); };
-	
-	Button1.disabled = false;
-	Button2.disabled = false;
+	start_comp();
 }
 
 function reset() {
@@ -87,9 +81,23 @@ function reset() {
 		}
 	}
 	
-	if (items.length > 0) {
-		full_comp(items[0]);
-	}
+	start_comp();
+}
+
+function enable_buttons() {
+	Button1.innerText = items[0];
+	Button2.innerText = leaderboard[mid];
+	
+	Button1.disabled = false;
+	Button2.disabled = false;
+}
+
+function disable_buttons() {
+	Button1.innerText = "--";
+	Button2.innerText = "--";
+	
+	Button1.disabled = true;
+	Button2.disabled = true;
 }
 
 function add_items() {
@@ -127,9 +135,7 @@ function add_items() {
 		}
 	}
 	
-	if (items.length > 0) {
-		full_comp(items[0]);
-	}
+	start_comp();
 }
 
 function update_leaderboard() {
@@ -152,9 +158,7 @@ function lead_change() {
 				dropped.push(leaderboard[i]);
 				leaderboard.splice(i, 1);
 				update_leaderboard();
-				if (items.length > 0) {
-					full_comp(items[0]);
-				}
+				start_comp();
 			}
 		} else if (lead_count > old) {
 			if (dropped.length > 0) {
@@ -164,9 +168,7 @@ function lead_change() {
 					leaderboard.push("--");
 				}
 				update_leaderboard();
-				if (items.length > 0) {
-					full_comp(items[0]);
-				}
+				start_comp();
 			}
 		}
 	} else {
