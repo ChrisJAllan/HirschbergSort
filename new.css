@@ -26,18 +26,19 @@ button:disabled {
 	color: white;
 }
 body {
-	width: 720px;
+	width: 760px;
 	margin: auto;
 	margin-top: 3%;
+	border: 1px solid black;
 }
 table {
 	width: 100%;
 }
-th {
+td {
 	width: 50%;
 	height: 100%;
 }
-h1 {
+h1, h2 {
 	text-align: center;
 }
 div {
@@ -49,4 +50,7 @@ div.box {
 }
 input {
 	font-size: 1em;
+}
+#buttonarea, #resultarea {
+	height: 240px;
 }
