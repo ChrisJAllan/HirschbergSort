@@ -144,7 +144,7 @@ function print_preview() {
 	var preview = window.open();
 	var position = document.getElementById("position").value;
 	preview.document.open(); 
-	preview.document.write("<h1 style=\"text-align: center;\">Compenty ranking for " + position + "</h1>");
+	preview.document.write("<h1 style=\"text-align: center;\">Compenty Ranking for the " + position + " Position</h1>");
 	preview.document.write(document.getElementById("leaderboard").outerHTML);
 	preview.document.body.style.width = "720px";
 	preview.print();
