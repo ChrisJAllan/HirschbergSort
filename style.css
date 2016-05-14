@@ -26,10 +26,7 @@ button:disabled {
 	color: white;
 }
 body {
-	width: 760px;
-	margin: auto;
-	margin-top: 3%;
-	border: 1px solid black;
+	
 }
 table {
 	width: 100%;
@@ -47,6 +44,12 @@ div {
 }
 div.box {
 	border: 2px solid black;
+}
+.container {
+	width: 760px;
+	margin: auto;
+	margin-top: 3%;
+	border: 1px solid black;
 }
 input {
 	font-size: 1em;
