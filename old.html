@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="old.css">
+</head>
+<body>
+<noscript><h1>This page requires javascript, which is disabled.</h1></noscript>
+<table>
+	<thead>
+		<tr><!-- Settings -->
+			<td><button class="red" onclick="reset()">Reset</button></td>
+			<td style="text-align: center;">
+				Leaderboard Count: <input id="lead_count" onchange="lead_change()" style="width: 3em;" />
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th><h3>Items</h3></th>
+			<th><h3>Leaderboard</h3></th>
+		</tr>
+		<tr>
+			<td>
+				<textarea id="input" onchange="add_items()">
+Technical Expertise
+Solves Problems
+Innovates
+Communicates
+Inspires and Motivates
+Builds Relationships
+Develops Others
+Collaboration/ Teamwork
+Drives for Results
+Stretch Goals
+Takes Initiative
+Strategic Perspective
+Champions Change
+Networking
+</textarea>
+			</td>
+			<td style="vertical-align: top;">
+				<ol id="leaderboard"></ol>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td><button class="blue" id="Button1" onclick="greater();" disabled>--</button></td>
+		<td><button class="blue" id="Button2" onclick="lessthan();" disabled>--</button></td>
+	</tr>
+</table>
+<div id="descrip" style="display: none;">A partial sort based on binary insertion. For a list of size <i>n</i> and a leaderboard of size <i>k</i>, it runs in <i>O(n log k)</i> time.</div>
+<script type="text/javascript" src="old.js"></script>
+<script type="text/javascript">reset();</script>
+</body>
+</html>

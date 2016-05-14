@@ -5,52 +5,56 @@
 </head>
 <body>
 <noscript><h1>This page requires javascript, which is disabled.</h1></noscript>
-<table>
-	<thead>
-		<tr><!-- Settings -->
-			<td><button class="red" onclick="reset()">Reset</button></td>
-			<td style="text-align: center;">
-				Leaderboard Count: <input id="lead_count" onchange="lead_change()" style="width: 3em;" />
-			</td>
-		</tr>
-	</thead>
-	<tbody>
+<div><h2>For position: <input id="position" /></h2></div>
+<div class="box">Instructions:
+Do the thing.<br />
+Well.<br />
+With steps.<br />
+</div>
+<div id="buttonarea" style="">
+	<table>
 		<tr>
-			<th><h3>Items</h3></th>
-			<th><h3>Leaderboard</h3></th>
+			<td><button class="fill" id="Button1" onclick="greater();"  disabled>--</button></td>
+			<td><button class="fill" id="Button2" onclick="lessthan();" disabled>--</button></td>
 		</tr>
 		<tr>
-			<td>
-				<textarea id="input" onchange="add_items()">
-Technical Expertise
-Solves Problems
-Innovates
-Communicates
-Inspires and Motivates
-Builds Relationships
-Develops Others
-Collaboration/ Teamwork
-Drives for Results
-Stretch Goals
-Takes Initiative
-Strategic Perspective
-Champions Change
-Networking
-</textarea>
-			</td>
-			<td style="vertical-align: top;">
-				<ol id="leaderboard"></ol>
-			</td>
+			<td style="vertical-align: top;"><div id="Def1">Definition 1 hkl hjkl hjl hj jhk hjkl hjk jhkl jk hjksdhjklf asdhfjkasfhklsd</div></td>
+			<td style="vertical-align: top;"><div id="Def2">Definition 2 jhkshjasdfhjklfs ahjkfsdh ajks fhasjklf safklsdhf sjksf gasdk</div></td>
 		</tr>
-	</tbody>
-	<tr>
-		<td><button class="blue" id="Button1" onclick="greater();" disabled>--</button></td>
-		<td><button class="blue" id="Button2" onclick="lessthan();" disabled>--</button></td>
-	</tr>
+	</table>
+</div>
+<div id="resultarea" style="display: none;">
+	<h2>Results</h2>
+	<ol id="leaderboard"></ol>
+</div>
+<table id="bottom">
+<tr>
+	<td style="width: 30%; text-align: left;"><button onclick="reset();">Reset</button></td>
+	<td style="width: 40%; text-align: center;"><button id="print" onclick="print_preview();" disabled>Print</button></td>
+	<td style="width: 30%; text-align: right;">Result count: 
+	<select id="lead_count" onchange="lead_change()">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">9</option>
+		<option value="10">10</option>
+		<option value="11">11</option>
+		<option value="12">12</option>
+		<option value="13">13</option>
+		<option value="14">14</option>
+		<option value="15">15</option>
+		<option value="16">16</option>
+	</select>
+	</td>
+</tr>
 </table>
-<div id="descrip" style="display: none;">A partial sort based on binary insertion. For a list of size <i>n</i> and a leaderboard of size <i>k</i>, it runs in <i>O(n log k)</i> time.</div>
-<script type="text/javascript" src="indexOf.js"></script>
-<script type="text/javascript" src="sort.js"></script>
-<script type="text/javascript">reset();</script>
+<script src="sort.js"></script>
+<script>reset();</script>
 </body>
 </html>
+

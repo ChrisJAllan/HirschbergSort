@@ -1,56 +1,53 @@
-.fill {
-	width: 100%;
-}
-
 button {
 	display: inline-block;
 	padding: 10px 30px;
 	text-align: center;
 	text-decoration: none;
 	color: white;
-	background-color: #5a90ce;
 	
 	transition: box-shadow .2s, background-color .2s, color .2s;
 	transition-timing-function: linear;
+	
+	width: 100%;
 }
-
+button.blue {
+	background-color: #5a90ce;
+}
+button.red {
+	background-color: red;
+}
 button:hover:enabled {
-	color: #5a90ce;
 	background-color: white;
 	
 	box-shadow: 0px 3px 10px grey;
 }
-
+button.blue:hover:enabled {
+	color: #5a90ce;
+}
+button.red:hover:enabled {
+	color: red;
+}
 button:disabled {
 	background-color: grey;
 	color: white;
 }
-body {
-	width: 760px;
+table {
+	width: 50%;
 	margin: auto;
 	margin-top: 3%;
-	border: 1px solid black;
 }
-table {
-	width: 100%;
-}
-td {
+th {
 	width: 50%;
 	height: 100%;
 }
-h1, h2 {
+textarea {
+	width: 100%;
+	height: 300px;
+}
+#descrip {
+	margin-top: 3%;
 	text-align: center;
 }
-div {
-	margin: 5px;
-	padding: 5px;
-}
-div.box {
-	border: 2px solid black;
-}
-input {
-	font-size: 1em;
-}
-#buttonarea, #resultarea {
-	height: 240px;
+h1 {
+	text-align: center;
 }
