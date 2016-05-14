@@ -8,14 +8,14 @@ button {
 	text-align: center;
 	text-decoration: none;
 	color: white;
-	background-color: #5a90ce;
+	background-color: #0069bc;
 	
 	transition: box-shadow .2s, background-color .2s, color .2s;
 	transition-timing-function: linear;
 }
 
 button:hover:enabled {
-	color: #5a90ce;
+	color: #0069bc;
 	background-color: white;
 	
 	box-shadow: 0px 3px 10px grey;
