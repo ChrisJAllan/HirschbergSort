@@ -131,13 +131,13 @@ function lead_change() {
 }
 
 function show_buttons() {
-	document.getElementById("buttonarea").style = "";
-	document.getElementById("resultarea").style = "display: none;";
+	document.getElementById("buttonarea").style.display = "block";
+	document.getElementById("resultarea").style.display = "none";
 }
 
 function show_results() {
-	document.getElementById("buttonarea").style = "display: none;";
-	document.getElementById("resultarea").style = "";
+	document.getElementById("buttonarea").style.display = "none";
+	document.getElementById("resultarea").style.display = "block";
 }
 
 function print_preview() {
