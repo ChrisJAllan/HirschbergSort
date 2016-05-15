@@ -85,7 +85,7 @@ function enable_buttons() {
 	Button2.innerText = leaderboard[mid];
 	
 	document.getElementById("Def1").innerText = descriptions[item];
-	document.getElementById("Def2").innerText = descriptions[mid];
+	document.getElementById("Def2").innerText = descriptions[items.indexOf(leaderboard[mid])];
 	
 	Button1.disabled = false;
 	Button2.disabled = false;
