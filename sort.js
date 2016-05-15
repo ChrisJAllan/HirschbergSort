@@ -7,6 +7,7 @@ var Button2 = document.getElementById("Button2");
 var min, mid, max;
 var items = ["Establishes stretch goals", "Drives for results", "Takes initiative", "Develops strategic perspective", "Champions change", "Connects the group to the outside world", "Communicates powerfully and prolifically", "Inspires and motivates others to high performance", "Builds relationships", "Develops others", "Works in a collaborative manner with others", "Has technical and professional expertise", "Solves problems and analyzes issues", "Initiates innovation"];
 var descriptions = ["Sets challenging but definitive goals for self and workgroup", "Operates with speed and intensity, translates long-term goals into immediate actions", "Initiates new programs, processes, relationships or technologies to accomplish goals", "Knows how immediate work relates to organizational strategy, translates into actionable steps", "Leads projects or programs that support organizational goals so that others support them", "Connects the workgroup to those outside the group and organization, markets his/her workgroup effectively and influences others in the organization", "Shares insights on issues/problems, clarifies purpose and links that purpose to actions", "Moves others to high level of performance, unlocks exceptional results in self and others", "Is trusted by others, is aware and supportive of needs of individuals and balances results with individual needs", "Provides on-going feedback in a helpful manner to develop skills and talents of others", "Works in a collaborative manner with others, helps resolve unproductive conflict", "Has the technical skills, product knowledge and professional skills to do the job", "Has and applies problem analysis and problem solving skills on technical and interpersonal level", "Actively considers new ideas and works to improve processes"];
+var preview;
 
 function reset() {
 	
@@ -141,12 +142,7 @@ function show_results() {
 }
 
 function print_preview() {
-	var preview = window.open();
 	var position = document.getElementById("position").value;
-	preview.document.open(); 
-	preview.document.write("<h1 style=\"text-align: center;\">Compenty Ranking for the " + position + " Position</h1>");
-	preview.document.write(document.getElementById("leaderboard").outerHTML);
-	preview.document.body.style.width = "720px";
-	preview.print();
+	preview = window.open("print.html");
 }
 

@@ -1,0 +1,35 @@
+html {
+	width: 8.5in;
+}
+body {
+	margin: .5in;
+}
+div.top {
+	display: flex;
+}
+.logo {
+	min-width: 1in;
+	max-width: 1in;
+	min-height: 1in;
+	max-height: 1in;
+	margin-bottom: auto;
+}
+h1 {
+	text-align: center;
+	width: 100%;
+}
+div.container {
+	margin-top: 1in;
+	margin-left: 1in;
+	margin-right: 1in;
+}
+#results {
+	font-size: 1.5em;
+}
+li {
+	margin: 0.2in;
+}
+
+* {
+//	border: 1px solid black;
+}
