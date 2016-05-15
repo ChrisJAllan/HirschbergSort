@@ -17,6 +17,8 @@ div.top {
 h1 {
 	text-align: center;
 	width: 100%;
+	margin-left: 0.1in;
+	margin-right: 0.1in;
 }
 div.container {
 	margin-top: 1in;

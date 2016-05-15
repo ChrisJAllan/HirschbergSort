@@ -142,7 +142,20 @@ function show_results() {
 }
 
 function print_preview() {
-	var position = document.getElementById("position").value;
 	preview = window.open("print.html");
+}
+
+function print_ready() {
+	var position = document.getElementById("position").value;
+	
+	preview.document.getElementById("title").innerText = "Competency Importance Results for the " + position + " Position";
+	
+	var leadHTML = "";
+	for (var i = 0; i < lead_count; i++) {
+		leadHTML += "<li>"+leaderboard[i]+"</li>";
+	}
+	preview.document.getElementById("results").innerHTML = leadHTML;
+	
+	preview.print();
 }
 
