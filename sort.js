@@ -21,6 +21,7 @@ function reset() {
 	
 	document.getElementById("lead_count").value = lead_count;
 	document.getElementById("print").disabled = true;
+	document.getElementById("email").disabled = true;
 	
 	item = 0;
 	start_comp();
@@ -30,6 +31,7 @@ function start_comp() {
 	if (item == items.length) {
 		show_results();
 		document.getElementById("print").disabled = false;
+		document.getElementById("email").disabled = false;
 		return;
 	}
 	
@@ -157,5 +159,19 @@ function print_ready() {
 	preview.document.getElementById("results").innerHTML = leadHTML;
 	
 	preview.print();
+}
+
+function sendmail() {
+	var position = document.getElementById("position").value;
+	
+	var subject = encodeURI("Competency Importance Results for the " + position + " Position");
+	
+	var body = "Competency importance ranking for "+position+"s:\r\n\r\n";
+	for (var i = 0; i < lead_count; i++) {
+		body += (i+1) +". "+leaderboard[i]+"\r\n";
+	}
+	body = encodeURIComponent(body);
+	
+	location.href = "mailto:someone@example.com?subject="+subject+"&body="+body;
 }
 
