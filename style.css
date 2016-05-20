@@ -47,6 +47,9 @@ td {
 h1, h2 {
 	text-align: center;
 }
+h2 {
+	margin: 0.1em;
+}
 div {
 	margin: 5px;
 	padding: 5px;
@@ -62,7 +65,7 @@ div.box {
 }
 input {
 	font-size: 1em;
-	width: 50%;
+	width: 100%;
 }
 #buttonarea, #resultarea {
 	height: 240px;
