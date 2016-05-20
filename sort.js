@@ -148,9 +148,10 @@ function print_preview() {
 }
 
 function print_ready() {
-	var position = document.getElementById("position").value;
-	
-	preview.document.getElementById("title").innerText = "Competency Importance Results for the " + position + " Position";
+	preview.document.getElementById("title").innerText = "Competency Importance Results";
+	preview.document.getElementById("position").innerText = document.getElementById("position").value;
+	preview.document.getElementById("manager").innerText = document.getElementById("manager").value;
+	preview.document.getElementById("number").innerText = document.getElementById("number").value;
 	
 	var leadHTML = "";
 	for (var i = 0; i < lead_count; i++) {

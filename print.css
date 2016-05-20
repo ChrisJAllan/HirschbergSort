@@ -20,8 +20,19 @@ h1 {
 	margin-left: 0.1in;
 	margin-right: 0.1in;
 }
+table.info {
+	margin-top: 0.3in;
+	margin-right:1in;
+	margin-left: 1in;
+	float:right;
+	font-size:1.1em;
+}
+span {
+	display:block;
+	text-align: right;
+}
 div.container {
-	margin-top: 1in;
+	margin-top: 1.4in;
 	margin-left: 1in;
 	margin-right: 1in;
 }
