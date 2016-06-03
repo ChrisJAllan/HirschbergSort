@@ -11,6 +11,13 @@ var preview;
 
 function reset() {
 	
+	for (i = 1; i <= items.length; i++) {
+		var opt = document.createElement("option");
+		opt.value = i;
+		opt.text = i;
+		document.getElementById("lead_count").add(opt);
+	}
+	
 	leaderboard = Array(lead_count);
 	for (i = 0; i < lead_count; i++) { leaderboard[i] = "--"; }
 	
@@ -102,7 +109,7 @@ function disable_buttons() {
 function update_leaderboard() {
 	var leadHTML = "";
 	for (var i = 0; i < lead_count; i++) {
-		leadHTML += "<li>"+leaderboard[i]+"</li>";
+		leadHTML += "<li>"+leaderboard[i]+"</li><input type=\"hidden\" name=\"res"+i+"\" value=\""+leaderboard[i]+"\" />";
 	}
 	document.getElementById("leaderboard").innerHTML = leadHTML;
 }
@@ -145,21 +152,6 @@ function show_results() {
 
 function print_preview() {
 	preview = window.open("print.html");
-}
-
-function print_ready() {
-	preview.document.getElementById("title").innerText = "Competency Importance Results";
-	preview.document.getElementById("position").innerText = document.getElementById("position").value;
-	preview.document.getElementById("manager").innerText = document.getElementById("manager").value;
-	preview.document.getElementById("number").innerText = document.getElementById("number").value;
-	
-	var leadHTML = "";
-	for (var i = 0; i < lead_count; i++) {
-		leadHTML += "<li>"+leaderboard[i]+"</li>";
-	}
-	preview.document.getElementById("results").innerHTML = leadHTML;
-	
-	preview.print();
 }
 
 var endl = "\r\n";

@@ -8,10 +8,11 @@
 <noscript><h1>This page requires javascript, which is disabled.</h1></noscript>
 <div class="top"><img src="https://octa.net/Images/global/OCTA15_logo.png" class="logo" /><h1>Competency Ranking</h1><span style="min-width: 1in;"></span></div>
 <div class="container">
+<form method="get" id="data" target="_blank">
 <table>
-	<tr><td><h2>Position Title:</h2></td><td><input id="position" /></td></tr>
-	<tr><td><h2>Hiring Manager:</h2></td><td><input id="manager" /></td></tr>
-	<tr><td><h2>Requisition #:</h2></td><td><input id="number" /></td></tr>
+	<tr><td><h2>Position Title:</h2></td><td><input id="position" name="position" /></td></tr>
+	<tr><td><h2>Hiring Manager:</h2></td><td><input id="manager" name="manager" /></td></tr>
+	<tr><td><h2>Requisition #:</h2></td><td><input id="number" name="number" /></td></tr>
 </table>
 <div class="box"><b>Instructions:</b><br />
 <ul>
@@ -21,8 +22,8 @@
 <div id="buttonarea" style="">
 	<table>
 		<tr>
-			<td><button class="fill" id="Button1" onclick="greater();"  disabled>--</button></td>
-			<td><button class="fill" id="Button2" onclick="lessthan();" disabled>--</button></td>
+			<td><button class="fill" id="Button1" onclick="greater();" type="button"  disabled>--</button></td>
+			<td><button class="fill" id="Button2" onclick="lessthan();" type="button" disabled>--</button></td>
 		</tr>
 		<tr>
 			<td style="vertical-align: top;"><div id="Def1"></div></td>
@@ -36,28 +37,12 @@
 </div>
 <table id="bottom">
 <tr>
-	<td style="width: 30%; text-align: left;"><button onclick="reset();">Reset</button></td>
-	<td style="width: 40%; text-align: center;"><button id="print" onclick="print_preview();" disabled>Print</button><button id="email" onclick="sendmail();" disabled>Email</button></td>
-	<td style="width: 30%; text-align: right;">Result count: 
-	<select id="lead_count" onchange="lead_change()">
-		<option value="1">1</option>
-		<option value="2">2</option>
-		<option value="3">3</option>
-		<option value="4">4</option>
-		<option value="5">5</option>
-		<option value="6">6</option>
-		<option value="7">7</option>
-		<option value="8">8</option>
-		<option value="9">9</option>
-		<option value="10">10</option>
-		<option value="11">11</option>
-		<option value="12">12</option>
-		<option value="13">13</option>
-		<option value="14">14</option>
-	</select>
-	</td>
+	<td style="width: 30%; text-align: left;"><button type="button" onclick="reset();">Reset</button></td>
+	<td style="width: 40%; text-align: center;"><button id="print" onclick="/*print_preview();*/" formaction="print.html" disabled>Print</button><button type="button" id="email" onclick="sendmail();" disabled>Email</button></td>
+	<td style="width: 30%; text-align: right;">Result count: <select id="lead_count" name="count" onchange="lead_change()"></select></td>
 </tr>
 </table>
+</form>
 </div>
 <script src="sort.js"></script>
 <script>reset();</script>

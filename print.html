@@ -21,7 +21,30 @@
 		<li>Result 3</li>
 	</ol>
 </div>
-<script>window.opener.print_ready()</script>
+<script>
+//window.opener.print_ready();
+function getParam(name) {
+	var regex = new RegExp("[?&]"+name+"=([^&]*)");
+	var results = regex.exec(document.location.search);
+	if (!results) return null;
+	return decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+document.getElementById("title").innerText = "Competency Importance Results";
+document.getElementById("position").innerText = getParam("position");
+document.getElementById("manager").innerText = getParam("manager");
+document.getElementById("number").innerText = getParam("number");
+
+var leadHTML = "";
+var lead_count = getParam("count");
+for (var i = 0; i < lead_count; i++) {
+	leadHTML += "<li>" + getParam("res" + i) + "</li>";
+}
+document.getElementById("results").innerHTML = leadHTML;
+
+print();
+
+</script>
 </body>
 </html>
 
