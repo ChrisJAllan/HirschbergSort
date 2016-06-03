@@ -9,14 +9,14 @@ var items = ["Establishes stretch goals", "Drives for results", "Takes initiativ
 var descriptions = ["Sets challenging but definitive goals for self and workgroup", "Operates with speed and intensity, translates long-term goals into immediate actions", "Initiates new programs, processes, relationships or technologies to accomplish goals", "Knows how immediate work relates to organizational strategy, translates into actionable steps", "Leads projects or programs that support organizational goals so that others support them", "Connects the workgroup to those outside the group and organization, markets his/her workgroup effectively and influences others in the organization", "Shares insights on issues/problems, clarifies purpose and links that purpose to actions", "Moves others to high level of performance, unlocks exceptional results in self and others", "Is trusted by others, is aware and supportive of needs of individuals and balances results with individual needs", "Provides on-going feedback in a helpful manner to develop skills and talents of others", "Works in a collaborative manner with others, helps resolve unproductive conflict", "Has the technical skills, product knowledge and professional skills to do the job", "Has and applies problem analysis and problem solving skills on technical and interpersonal level", "Actively considers new ideas and works to improve processes"];
 var preview;
 
+for (i = 1; i <= items.length; i++) {
+	var opt = document.createElement("option");
+	opt.value = i;
+	opt.text = i;
+	document.getElementById("lead_count").add(opt);
+}
+
 function reset() {
-	
-	for (i = 1; i <= items.length; i++) {
-		var opt = document.createElement("option");
-		opt.value = i;
-		opt.text = i;
-		document.getElementById("lead_count").add(opt);
-	}
 	
 	leaderboard = Array(lead_count);
 	for (i = 0; i < lead_count; i++) { leaderboard[i] = "--"; }
@@ -32,6 +32,16 @@ function reset() {
 	
 	item = 0;
 	start_comp();
+}
+
+function tog_help() {
+	if (document.getElementById("tog").text == "hide") {
+		document.getElementById("help").classList.add("hidden");
+		document.getElementById("tog").text = "show";
+	} else {
+		document.getElementById("help").classList.remove("hidden");
+		document.getElementById("tog").text = "hide";
+	}
 }
 
 function start_comp() {
