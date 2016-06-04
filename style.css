@@ -56,7 +56,7 @@ div {
 }
 div.box {
 	border: 2px solid black;
-	height: 7em;
+	//height: 8em;
 	overflow: hidden;
 	transition: height .5s;
 }
