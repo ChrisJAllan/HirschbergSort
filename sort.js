@@ -164,21 +164,3 @@ function print_preview() {
 	preview = window.open("print.html");
 }
 
-var endl = "\r\n";
-
-function sendmail() {
-	var position = document.getElementById("position").value;
-	
-	var subject = encodeURI("Competency Importance Results for the " + position + " Position");
-	
-	var body = "Hiring Manager: " + document.getElementById("manager").value + endl;
-	body += "Requisition #: " + document.getElementById("number").value + endl + endl;
-	body += "Competency importance ranking for "+position+"s:" + endl + endl;
-	for (var i = 0; i < lead_count; i++) {
-		body += (i+1) +". "+leaderboard[i]+"\r\n";
-	}
-	body = encodeURIComponent(body);
-	
-	location.href = "mailto:someone@example.com?subject="+subject+"&body="+body;
-}
-

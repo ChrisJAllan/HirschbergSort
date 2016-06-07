@@ -76,3 +76,6 @@ input {
 #buttonarea, #resultarea {
 	min-height: 11em;
 }
+iframe {
+	display: none;
+}

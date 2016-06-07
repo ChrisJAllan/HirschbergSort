@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function getParam(name) {
+	var regex = new RegExp("[?&]"+name+"(?:=([^&\n]*))?");
+	var results = regex.exec(document.location.search);
+	if (!results) return null;
+	if (results[1] == "") return true;
+	return decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+var endl = "\r\n";
+
+</script>
+</head>
+<body>
+<script>
+if (getParam("print")) {
+	open("print.html"+location.search);
+}
+if (getParam("mail")) {
+	var position = getParam("position");
+	
+	var subject = encodeURI("Competency Importance Results for the " + position + " Position");
+	
+	var body = "Hiring Manager: " + getParam("manager") + endl;
+	body += "Requisition #: " + getParam("number") + endl + endl;
+	body += "Competency importance ranking for "+position+"s:" + endl + endl;
+	for (var i = 0; i < getParam("count"); i++) {
+		body += (i+1) +". "+getParam("res"+i)+"\r\n";
+	}
+	body = encodeURIComponent(body);
+	
+	console.log("Launching mail");
+	
+	location.href = "mailto:someone@example.com?subject="+subject+"&body="+body;
+}
+</script>
+</body>
+</html>
+
