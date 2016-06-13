@@ -13,6 +13,8 @@ function getParam(name) {
 
 function submit() {
 	database.ref("Results/").push({
+		UnixTime: Date.now(),
+		Date: Date(),
 		Position: getParam("position"),
 		Manager: getParam("manager"),
 		ReqNumber: getParam("number"),
