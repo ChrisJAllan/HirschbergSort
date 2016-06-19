@@ -3,6 +3,9 @@
 <head>
 <script src="https://www.gstatic.com/firebasejs/3.0.2/firebase.js"></script>
 <script>
+var database;
+var results;
+
 function getParam(name) {
 	var regex = new RegExp("[?&]"+name+"(?:=([^&\n]*))?");
 	var results = regex.exec(document.location.search);
@@ -23,48 +26,46 @@ function submit() {
 }
 </script>
 </head>
-<body>
+<body onload="load()">
 <script>
-var endl = "\r\n";
-
-var config = {
-	apiKey: "AIzaSyAR5mkKau0nYAF7BCrYdB1_EnqmFPlyPf4",
-	authDomain: "hirschbergsort.firebaseapp.com",
-	databaseURL: "https://hirschbergsort.firebaseio.com",
-	storageBucket: "",
-};
-firebase.initializeApp(config);
-
-var database = firebase.database();
-
-var results = [];
-for (var i = 0; i < getParam("count"); i++) {
-	results.push(getParam("res"+i));
-}
-
-if (getParam("print")) {
-	submit();
+function load() {
+	var config = {
+		apiKey: "AIzaSyAR5mkKau0nYAF7BCrYdB1_EnqmFPlyPf4",
+		authDomain: "hirschbergsort.firebaseapp.com",
+		databaseURL: "https://hirschbergsort.firebaseio.com",
+		storageBucket: "",
+	};
+	firebase.initializeApp(config);
 	
-	open("print.html"+location.search);
-}
-if (getParam("mail")) {
-	submit();
+	database = firebase.database();
 	
-	var position = getParam("position");
-	
-	var subject = encodeURI("Competency Importance Results for the " + position + " Position");
-	
-	var body = "Hiring Manager: " + getParam("manager") + endl;
-	body += "Requisition #: " + getParam("number") + endl + endl;
-	body += "Competency importance ranking for "+position+"s:" + endl + endl;
+	results = [];
 	for (var i = 0; i < getParam("count"); i++) {
-		body += (i+1) +". "+results[i]+"\r\n";
+		results.push(getParam("res"+i));
 	}
-	body = encodeURIComponent(body);
-	
-	console.log("Launching mail");
-	
-	location.href = "mailto:someone@example.com?subject="+subject+"&body="+body;
+
+	if (getParam("print")) {
+		submit();
+		
+		open("print.html"+location.search);
+	}
+	if (getParam("mail")) {
+		submit();
+		var position = getParam("position");
+		var subject = encodeURI("Competency Importance Results for the " + position + " Position");
+		var endl = "\r\n";
+		var body = "Hiring Manager: " + getParam("manager") + endl;
+		body += "Requisition #: " + getParam("number") + endl + endl;
+		body += "Competency importance ranking for "+position+"s:" + endl + endl;
+		for (var i = 0; i < getParam("count"); i++) {
+			body += (i+1) +". "+results[i]+"\r\n";
+		}
+		body = encodeURIComponent(body);
+		
+		console.log("Launching mail");
+		
+		location.href = "mailto:someone@example.com?subject="+subject+"&body="+body;
+	}
 }
 </script>
 </body>
