@@ -5,8 +5,11 @@
 	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 	<script type="text/javascript" src="Downloadify/js/swfobject.js"></script>
 	<script type="text/javascript" src="Downloadify/js/downloadify.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body onload="load()">
+<noscript><h1>This page requires javascript, which is disabled.</h1></noscript>
+<div class="top"><img src="https://octa.net/Images/global/OCTA15_logo.png" class="logo" /><h1>Competency Ranking Report</h1><span style="min-width: 1in;"></span></div>
 <!--
 <div style="display:none;" id="login">
 	<form action="#" target="none" onsubmit="login()">
@@ -19,10 +22,16 @@
 	<a href="#" id="Export">Export</a>
 </div>
 -->
-<div id="download">
-	<p id="downloadify">
-		You must have Flash 10 installed to download this file.
-	</p>
+<div class="container" style="text-align:center;">
+	<h3>Competency Ranking Report.csv</h3>
+	<table>
+	<tr>
+	<td>Flash</td><td id="downloadify">You must have Flash 10 installed to download this file.</td>
+	</tr>
+	<tr>
+	<td>HTML5 (New browsers only):</td><td><a download="Competency Ranking Report.csv" id="htmldown">Download</a></td>
+	</tr>
+	</table>
 </div>
 <script>
 function load() {
@@ -68,6 +77,7 @@ function getData() {
 		})
 		
 		dataurl += encodeURIComponent(data);
+		document.getElementById("htmldown").href = dataurl;
 		Downloadify.create("downloadify", {
 			filename: "Competency Ranking Report.csv",
 			data: data,
@@ -82,7 +92,7 @@ function getData() {
 }
  
 </script>
-<iframe style="display:none;" name="none"></iframe>
+<!--<iframe style="display:none;" name="none"></iframe>-->
 </body>
 </html>
 
