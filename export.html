@@ -29,7 +29,7 @@
 	<td>Flash</td><td id="downloadify">You must have Flash 10 installed to download this file.</td>
 	</tr>
 	<tr>
-	<td>HTML5 (New browsers only):</td><td><a download="Competency Ranking Report.csv" id="htmldown">Download</a></td>
+	<td>HTML5 (New browsers only, Edge 13+):</td><td><a download="Competency Ranking Report.csv" id="htmldown">Download</a></td>
 	</tr>
 	</table>
 </div>
@@ -72,8 +72,8 @@ function getData() {
 			data += child.val().ReqNumber + ",";
 			child.val().Results.forEach(function(res) {
 				data += res + ",";
-			})
-			data + newline;
+			});
+			data += newline;
 		})
 		
 		dataurl += encodeURIComponent(data);
