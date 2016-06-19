@@ -11,7 +11,7 @@
 <noscript><h1>This page requires javascript, which is disabled.</h1></noscript>
 <div class="top"><img src="https://octa.net/Images/global/OCTA15_logo.png" class="logo" /><h1>Competency Ranking Report</h1><span style="min-width: 1in;"></span></div>
 <div class="container" style="text-align:center;">
-	<div id="login">
+	<div id="login" style="display:none;">
 		<form action="#" target="none" onsubmit="login()">
 		<table style="width:50%;margin:auto;">
 			<tr><td>Email:</td><td><input type="text" id="email" /></td></tr>
@@ -20,7 +20,7 @@
 		<p><button type="submit">Log In</button></p>
 		</form>
 	</div>
-	<div id="download" style="display:none;">
+	<div id="download" style="display:inherit;">
 		<h3>Competency Ranking Report.csv</h3>
 		<table>
 		<tr><!--<td>Flash</td>--><td id="downloadify">You must have Flash 10 installed to download this file.</td></tr>
@@ -40,7 +40,7 @@ function load() {
 	};
 	firebase.initializeApp(config);
 	
-	//getData();
+	getData();
 }
 
 function login() {
