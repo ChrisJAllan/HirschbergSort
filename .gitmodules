@@ -1,0 +1,3 @@
+[submodule "Downloadify"]
+	path = Downloadify
+	url = https://github.com/dcneiner/Downloadify.git
