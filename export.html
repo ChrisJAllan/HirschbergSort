@@ -62,6 +62,10 @@ function login() {
 		getData();
 	}, function(E) {
 		document.getElementById("loginfail").style.display= "inherit";
+		setTimeout(function() {document.getElementById("loginfail").style.color = "white";}, 100);
+		setTimeout(function() {document.getElementById("loginfail").style.color = "red";}, 200);
+		setTimeout(function() {document.getElementById("loginfail").style.color = "white";}, 300);
+		setTimeout(function() {document.getElementById("loginfail").style.color = "red";}, 400);
 	});
 }
 
