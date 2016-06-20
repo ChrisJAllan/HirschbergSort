@@ -6,7 +6,7 @@
 	<script src="https://www.gstatic.com/firebasejs/3.0.2/firebase.js"></script>
 	<script src="db.js"></script>
 </head>
-<body>
+<body onload="load()">
 <noscript><h1>This page requires javascript, which is disabled.</h1></noscript>
 <div class="top"><img src="https://octa.net/Images/global/OCTA15_logo.png" class="logo" /><h1>Competency Ranking</h1><span style="min-width: 1in;"></span></div>
 <div class="container">
@@ -41,7 +41,7 @@
 </div>
 <table id="bottom">
 <tr>
-	<td style="width: 30%; text-align: left;"><button type="button" onclick="reset();">Reset</button></td>
+	<td style="width: 30%; text-align: left;"><button type="button" onclick="reset();" form="">Reset</button></td>
 	<td style="width: 40%; text-align: center;"><button id="print" name="print" onclick="/*print_preview();*/" disabled>Print</button><button id="email" name="mail" onclick="/*sendmail();*/" disabled>Email</button></td>
 	<td style="width: 30%; text-align: right;">Result count: <select id="lead_count" name="count" onchange="lead_change()"></select></td>
 </tr>

@@ -16,6 +16,10 @@ for (i = 1; i <= items.length; i++) {
 	document.getElementById("lead_count").add(opt);
 }
 
+function load() {
+	loadDB();
+}
+
 function reset() {
 	
 	leaderboard = Array(lead_count);
@@ -46,7 +50,6 @@ function tog_help() {
 
 function start_comp() {
 	if (item == items.length) {
-		loadDB();
 		show_results();
 		document.getElementById("print").disabled = false;
 		document.getElementById("email").disabled = false;
