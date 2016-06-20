@@ -46,9 +46,15 @@ function tog_help() {
 
 function start_comp() {
 	if (item == items.length) {
+		loadDB();
 		show_results();
 		document.getElementById("print").disabled = false;
 		document.getElementById("email").disabled = false;
+		
+		submit( document.getElementById("position").value,
+				document.getElementById("manager").value,
+				document.getElementById("number").value,
+				leaderboard);
 		return;
 	}
 	

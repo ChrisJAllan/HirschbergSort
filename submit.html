@@ -2,6 +2,7 @@
 <html>
 <head>
 <script src="https://www.gstatic.com/firebasejs/3.0.2/firebase.js"></script>
+<script src="db.js"></script>
 <script>
 var database;
 var results;
@@ -13,7 +14,7 @@ function getParam(name) {
 	if (results[1] == "") return true;
 	return decodeURIComponent(results[1].replace(/\+/g, " "));
 }
-
+/*
 function submit() {
 	return database.ref("Results/").push({
 		UnixTime: Date.now(),
@@ -23,41 +24,37 @@ function submit() {
 		ReqNumber: getParam("number"),
 		Results: results
 	});
-}
+}*/
 </script>
 </head>
 <body onload="load()">
 <script>
 function load() {
-	var config = {
-		apiKey: "AIzaSyAR5mkKau0nYAF7BCrYdB1_EnqmFPlyPf4",
-		authDomain: "hirschbergsort.firebaseapp.com",
-		databaseURL: "https://hirschbergsort.firebaseio.com",
-		storageBucket: "",
-	};
-	firebase.initializeApp(config);
+	//loadDB();
 	
-	database = firebase.database();
+	var position = getParam("position");
+	var manager = getParam("manager");
+	var number = getParam("number");
 	
 	results = [];
 	for (var i = 0; i < getParam("count"); i++) {
 		results.push(getParam("res"+i));
 	}
+	
+	if (results.length > 0) {
+		//submit(position, manager, number, results);
+	}
 
 	if (getParam("print")) {
-		submit();
-		
 		open("print.html"+location.search);
 	}
 	if (getParam("mail")) {
-		submit();
-		var position = getParam("position");
 		var subject = encodeURI("Competency Importance Results for the " + position + " Position");
 		var endl = "\r\n";
-		var body = "Hiring Manager: " + getParam("manager") + endl;
-		body += "Requisition #: " + getParam("number") + endl + endl;
+		var body = "Hiring Manager: " + manager + endl;
+		body += "Requisition #: " + number + endl + endl;
 		body += "Competency importance ranking for "+position+"s:" + endl + endl;
-		for (var i = 0; i < getParam("count"); i++) {
+		for (var i = 0; i < results.length; i++) {
 			body += (i+1) +". "+results[i]+"\r\n";
 		}
 		body = encodeURIComponent(body);
