@@ -24,23 +24,3 @@ function submit(pos, man, num, res) {
 	});
 }
 
-function getData() {
-	var newline = "\r\n"
-	var data = "Competency Ranking Report" + newline + newline +
-	           "Date,Position,Manager,Number,Results" + newline;
-	
-	database.ref("Results/").once("value").then(function(snapshot) {
-		snapshot.forEach(function(child) {
-			data += child.val().Date + ",";
-			data += child.val().Position + ",";
-			data += child.val().Manager + ",";
-			data += child.val().ReqNumber + ",";
-			child.val().Results.forEach(function(res) {
-				data += res + ",";
-			});
-			data += newline;
-		})
-	});
-	
-	return data;
-}

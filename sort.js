@@ -169,7 +169,3 @@ function show_results() {
 	document.getElementById("resultarea").style.display = "block";
 }
 
-function print_preview() {
-	preview = window.open("print.html");
-}
-
