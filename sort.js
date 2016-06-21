@@ -54,10 +54,10 @@ function start_comp() {
 		document.getElementById("print").disabled = false;
 		document.getElementById("email").disabled = false;
 		
-		submit( document.getElementById("position").value,
-				document.getElementById("manager").value,
-				document.getElementById("number").value,
-				leaderboard);
+		submit(document.getElementById("position").value,
+		       document.getElementById("manager").value,
+		       document.getElementById("number").value,
+		       leaderboard);
 		return;
 	}
 	

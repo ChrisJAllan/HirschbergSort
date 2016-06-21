@@ -47,8 +47,8 @@ function load() {
 }
 
 function login() {
-	firebase.auth().signInWithEmailAndPassword( document.getElementById("email").value,
-												document.getElementById("pass").value).catch(function(error) {
+	firebase.auth().signInWithEmailAndPassword(document.getElementById("email").value,
+	                                           document.getElementById("pass").value).catch(function(error) {
 		// Handle Errors here.
 		var errorCode = error.code;
 		var errorMessage = error.message;
@@ -64,8 +64,8 @@ function login() {
 function getData() {
 	var dataurl = "data:text/csv;charset=utf-8,";
 	var newline = "\r\n"
-	var data =	"Competency Ranking Report" + newline + newline +
-				"Date,Position,Manager,Number,Results" + newline;	
+	var data = "Competency Ranking Report" + newline + newline +
+	           "Date,Position,Manager,Number,Results" + newline;
 	
 	var ref=firebase.database().ref("Results/");
 	ref.once("value").then(function(snapshot) {
