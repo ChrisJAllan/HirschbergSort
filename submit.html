@@ -1,72 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-<script src="https://www.gstatic.com/firebasejs/3.0.2/firebase.js"></script>
+<body>
 <script>
-var database;
-var results;
-
-function getParam(name) {
-	var regex = new RegExp("[?&]"+name+"(?:=([^&\n]*))?");
-	var results = regex.exec(document.location.search);
-	if (!results) return null;
-	if (results[1] == "") return true;
-	return decodeURIComponent(results[1].replace(/\+/g, " "));
-}
+<?php
 
 function submit() {
-	return database.ref("Results/").push({
-		UnixTime: Date.now(),
-		Date: Date(),
-		Position: getParam("position"),
-		Manager: getParam("manager"),
-		ReqNumber: getParam("number"),
-		Results: results
-	});
-}
-</script>
-</head>
-<body onload="load()">
-<script>
-function load() {
-	var config = {
-		apiKey: "AIzaSyAR5mkKau0nYAF7BCrYdB1_EnqmFPlyPf4",
-		authDomain: "hirschbergsort.firebaseapp.com",
-		databaseURL: "https://hirschbergsort.firebaseio.com",
-		storageBucket: "",
-	};
-	firebase.initializeApp(config);
-	
-	database = firebase.database();
-	
-	results = [];
-	for (var i = 0; i < getParam("count"); i++) {
-		results.push(getParam("res"+i));
-	}
 
-	if (getParam("print")) {
-		submit();
-		
-		open("print.html"+location.search);
-	}
-	if (getParam("mail")) {
-		submit();
-		var position = getParam("position");
-		var subject = encodeURI("Competency Importance Results for the " + position + " Position");
-		var endl = "\r\n";
-		var body = "Hiring Manager: " + getParam("manager") + endl;
-		body += "Requisition #: " + getParam("number") + endl + endl;
-		body += "Competency importance ranking for "+position+"s:" + endl + endl;
-		for (var i = 0; i < getParam("count"); i++) {
-			body += (i+1) +". "+results[i]+"\r\n";
-		}
-		body = encodeURIComponent(body);
-		
-		console.log("Launching mail");
-		
-		location.href = "mailto:karcher@octa.net?subject="+subject+"&body="+body;
-	}
 }
+
+if ($_GET["print"]) {
+	submit();
+	
+	echo "open(\"print.html\"+location.search);";
+}
+
+if ($_GET["mail"]) {
+	submit();
+	
+	$endl = "\r\n";
+	
+	$subject = "Competency Importance Results for the " . $_GET["position"] . " Position";
+	$body  = "Hiring Manager: " . $_GET["manager"] . $endl;
+	$body .= "Requisition #: " . $_GET["number"] . $endl . $endl;
+	$body .= "Competency importance ranking for " . $_GET["position"] . "s:" . $endl . $endl;
+	for ($i = 0; i < $_GET["count"]; $i++) {
+		$body .= $i+1 . ". " . $_GET["res".$i] . $endl;
+	}
+	$esc_subj = rawurlencode($subject);
+	$esc_body = rawurlencode($body);
+	echo "location.href = \"mailto:karcher@octa.net?subject=$esc_subj&body=$esc_body\";";
+}
+?>
 </script>
 </body>
 </html>
