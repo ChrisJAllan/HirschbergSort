@@ -8,13 +8,13 @@ function submit() {
 
 }
 
-if ($_GET["print"]) {
+if (isset($_GET["print"])) {
 	submit();
 	
 	echo "open(\"print.html\"+location.search);";
 }
 
-if ($_GET["mail"]) {
+if (isset($_GET["mail"])) {
 	submit();
 	
 	$endl = "\r\n";

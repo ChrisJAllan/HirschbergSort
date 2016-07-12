@@ -6,45 +6,22 @@
 <body>
 <div class="top">
 	<img src="https://octa.net/Images/global/OCTA15_logo.png" class="logo" />
-	<h1 id="title">Print page under construction</h1>
+	<h1 id="title">Competency Importance Results</h1>
 	<span class="logo"></span>
 </div>
 <table class="info">
-	<tr><td><b>Position Title:</b></td><td><span id="position"></span></td></tr>
-	<tr><td><b>Hiring Manager:</b></td><td><span id="manager"></span></td></tr>
-	<tr><td><b>Requisition #:</b></td><td><span id="number"></span></td></tr>
+	<tr><td><b>Position Title:</b></td><td><?php echo $_GET["position"]; ?></td></tr>
+	<tr><td><b>Hiring Manager:</b></td><td><?php echo $_GET["manager"]; ?></td></tr>
+	<tr><td><b>Requisition #:</b></td><td><?php echo $_GET["number"]; ?></td></tr>
 </table>
-<div class="container">
-	<ol id="results">
-		<li>Result 1</li>
-		<li>Result 2</li>
-		<li>Result 3</li>
-	</ol>
-</div>
-<script>
-//window.opener.print_ready();
-function getParam(name) {
-	var regex = new RegExp("[?&]"+name+"=([^&]*)");
-	var results = regex.exec(document.location.search);
-	if (!results) return null;
-	return decodeURIComponent(results[1].replace(/\+/g, " "));
+<div class="container"><ol id="results">
+<?php
+for ($i = 0; $i < $_GET["count"]; $i++) {
+	echo "<li>" . $_GET["res".$i] . "</li>";
 }
-
-document.getElementById("title").innerText = "Competency Importance Results";
-document.getElementById("position").innerText = getParam("position");
-document.getElementById("manager").innerText = getParam("manager");
-document.getElementById("number").innerText = getParam("number");
-
-var leadHTML = "";
-var lead_count = getParam("count");
-for (var i = 0; i < lead_count; i++) {
-	leadHTML += "<li>" + getParam("res" + i) + "</li>";
-}
-document.getElementById("results").innerHTML = leadHTML;
-
-print();
-
-</script>
+?>
+</ol></div>
+<script>print();</script>
 </body>
 </html>
 
