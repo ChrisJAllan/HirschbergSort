@@ -3,6 +3,7 @@
 <head>
 	<title>Competency Ranking Report</title>
 	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script type="text/javascript" src="Downloadify/js/swfobject.js"></script>
 	<script type="text/javascript" src="Downloadify/js/downloadify.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -46,8 +47,8 @@ function load() {
 }
 
 function login() {
-	firebase.auth().signInWithEmailAndPassword(document.getElementById("email").value,
-	                                           document.getElementById("pass").value).catch(function(error) {
+	firebase.auth().signInWithEmailAndPassword($("#email").val(),
+	                                           $("#pass").val()).catch(function(error) {
 		// Handle Errors here.
 		var errorCode = error.code;
 		var errorMessage = error.message;
@@ -56,8 +57,8 @@ function login() {
 	
 	getData();
 	
-	document.getElementById("login").remove();
-	document.getElementById("download").style.display = "inherit";
+	$("#login").remove();
+	$("#download").css("display", "inherit");
 }
 
 function getData() {
@@ -90,7 +91,7 @@ function getData() {
 			transparent: true,
 			append: false
 		});
-		//document.getElementById("htmldown").href = dataurl;
+		//$("#htmldown").attr("href", dataurl);
 	});
 }
  

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="print.css">
+	<link rel="stylesheet" type="text/css" href="print.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
-<body>
+<body onload="load()">
 <div class="top">
 	<img src="https://octa.net/Images/global/OCTA15_logo.png" class="logo" />
 	<h1 id="title">Print page under construction</h1>
@@ -22,7 +23,6 @@
 	</ol>
 </div>
 <script>
-//window.opener.print_ready();
 function getParam(name) {
 	var regex = new RegExp("[?&]"+name+"=([^&]*)");
 	var results = regex.exec(document.location.search);
@@ -30,19 +30,21 @@ function getParam(name) {
 	return decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-document.getElementById("title").innerText = "Competency Importance Results";
-document.getElementById("position").innerText = getParam("position");
-document.getElementById("manager").innerText = getParam("manager");
-document.getElementById("number").innerText = getParam("number");
-
-var leadHTML = "";
-var lead_count = getParam("count");
-for (var i = 0; i < lead_count; i++) {
-	leadHTML += "<li>" + getParam("res" + i) + "</li>";
+function load() {
+	$("#title").text("Competency Importance Results");
+	$("#position").text(getParam("position"));
+	$("#manager").text(getParam("manager"));
+	$("#number").text(getParam("number"));
+	
+	var leadHTML = "";
+	var lead_count = getParam("count");
+	for (var i = 0; i < lead_count; i++) {
+		leadHTML += "<li>" + getParam("res" + i) + "</li>";
+	}
+	$("#results").html(leadHTML);
+	
+	print();
 }
-document.getElementById("results").innerHTML = leadHTML;
-
-print();
 
 </script>
 </body>

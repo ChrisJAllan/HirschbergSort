@@ -10,7 +10,6 @@ function getParam(name) {
 	var regex = new RegExp("[?&]"+name+"(?:=([^&\n]*))?");
 	var results = regex.exec(document.location.search);
 	if (!results) return null;
-	if (results[1] == "") return true;
 	return decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
@@ -44,12 +43,12 @@ function load() {
 		results.push(getParam("res"+i));
 	}
 
-	if (getParam("print")) {
+	if (getParam("print") != null) {
 		submit();
 		
 		open("print.html"+location.search);
 	}
-	if (getParam("mail")) {
+	if (getParam("mail") != null) {
 		submit();
 		var position = getParam("position");
 		var subject = encodeURI("Competency Importance Results for the " + position + " Position");

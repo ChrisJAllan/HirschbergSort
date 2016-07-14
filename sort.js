@@ -2,22 +2,17 @@ var item;
 var lead_count = 3;
 var leaderboard, dropped;
 var count;
-var Button1 = document.getElementById("Button1");
-var Button2 = document.getElementById("Button2");
 var min, mid, max;
 var items = ["Establishes stretch goals", "Drives for results", "Takes initiative", "Develops strategic perspective", "Champions change", "Connects the group to the outside world", "Communicates powerfully and prolifically", "Inspires and motivates others to high performance", "Builds relationships", "Develops others", "Works in a collaborative manner with others", "Has technical and professional expertise", "Solves problems and analyzes issues", "Initiates innovation"];
 var descriptions = ["Sets challenging but definitive goals for self and workgroup", "Operates with speed and intensity, translates long-term goals into immediate actions", "Initiates new programs, processes, relationships or technologies to accomplish goals", "Knows how immediate work relates to organizational strategy, translates into actionable steps", "Leads projects or programs that support organizational goals so that others support them", "Connects the workgroup to those outside the group and organization, markets his/her workgroup effectively and influences others in the organization", "Shares insights on issues/problems, clarifies purpose and links that purpose to actions", "Moves others to high level of performance, unlocks exceptional results in self and others", "Is trusted by others, is aware and supportive of needs of individuals and balances results with individual needs", "Provides on-going feedback in a helpful manner to develop skills and talents of others", "Works in a collaborative manner with others, helps resolve unproductive conflict", "Has the technical skills, product knowledge and professional skills to do the job", "Has and applies problem analysis and problem solving skills on technical and interpersonal level", "Actively considers new ideas and works to improve processes"];
 var preview;
 
-for (i = 1; i <= items.length; i++) {
-	var opt = document.createElement("option");
-	opt.value = i;
-	opt.text = i;
-	document.getElementById("lead_count").add(opt);
-}
-
 function load() {
-	loadDB();
+	for (i = 1; i <= items.length; i++) {
+		$("#lead_count").append("<option value=\""+i+"\">"+i+"</option>");
+	}
+	
+	reset();
 }
 
 function reset() {
@@ -30,29 +25,29 @@ function reset() {
 	show_buttons();
 	update_leaderboard();
 	
-	document.getElementById("lead_count").value = lead_count;
-	document.getElementById("print").disabled = true;
-	document.getElementById("email").disabled = true;
+	$("#lead_count").val(lead_count);
+	$("#print").attr("disabled", true);
+	$("#email").attr("disabled", true);
 	
 	item = 0;
 	start_comp();
 }
 
 function tog_help() {
-	if (document.getElementById("tog").text == "hide") {
-		document.getElementById("help").classList.add("hidden");
-		document.getElementById("tog").text = "show";
+	if ($("#tog").text() == "hide") {
+		$("#help").addClass("hidden");
+		$("#tog").text("show");
 	} else {
-		document.getElementById("help").classList.remove("hidden");
-		document.getElementById("tog").text = "hide";
+		$("#help").removeClass("hidden");
+		$("#tog").text("hide");
 	}
 }
 
 function start_comp() {
 	if (item == items.length) {
 		show_results();
-		document.getElementById("print").disabled = false;
-		document.getElementById("email").disabled = false;
+		$("#print").attr("disabled", false);
+		$("#email").attr("disabled", false);
 		return;
 	}
 	
@@ -102,22 +97,22 @@ function lead_insert(index) {
 }
 
 function enable_buttons() {
-	Button1.innerText = items[item];
-	Button2.innerText = leaderboard[mid];
+	$("#Button1").text(items[item]);
+	$("#Button2").text(leaderboard[mid]);
 	
-	document.getElementById("Def1").innerText = descriptions[item];
-	document.getElementById("Def2").innerText = descriptions[items.indexOf(leaderboard[mid])];
+	$("#Def1").text(descriptions[item]);
+	$("#Def2").text(descriptions[items.indexOf(leaderboard[mid])]);
 	
-	Button1.disabled = false;
-	Button2.disabled = false;
+	$("#Button1").attr("disabled", false);
+	$("#Button2").attr("disabled", false);
 }
 
 function disable_buttons() {
-	Button1.innerText = "--";
-	Button2.innerText = "--";
+	$("#Button1").text("--");
+	$("#Button2").text("--");
 	
-	Button1.disabled = true;
-	Button2.disabled = true;
+	$("#Button1").attr("disabled", true);
+	$("#Button2").attr("disabled", true);
 }
 
 function update_leaderboard() {
@@ -125,11 +120,11 @@ function update_leaderboard() {
 	for (var i = 0; i < lead_count; i++) {
 		leadHTML += "<li>"+leaderboard[i]+"</li><input type=\"hidden\" name=\"res"+i+"\" value=\""+leaderboard[i]+"\" />";
 	}
-	document.getElementById("leaderboard").innerHTML = leadHTML;
+	$("#leaderboard").html(leadHTML);
 }
 
 function lead_change() {
-	var value = document.getElementById("lead_count").value;
+	var value = $("#lead_count").val();
 	var old = lead_count;
 	lead_count = Number(value);
 	
@@ -155,12 +150,12 @@ function lead_change() {
 }
 
 function show_buttons() {
-	document.getElementById("buttonarea").style.display = "block";
-	document.getElementById("resultarea").style.display = "none";
+	$("#buttonarea").css("display", "block");
+	$("#resultarea").css("display", "none");
 }
 
 function show_results() {
-	document.getElementById("buttonarea").style.display = "none";
-	document.getElementById("resultarea").style.display = "block";
+	$("#buttonarea").css("display", "none");
+	$("#resultarea").css("display", "block");
 }
 
