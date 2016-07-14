@@ -1,17 +1,51 @@
 <!DOCTYPE html>
 <html>
 <body>
-<script>
 <?php
 
 function submit() {
-
+	$server = "";
+	$db = "";
+	$sqluser = "";
+	$sqlpass = "";
+	
+	try {
+		$conn = new PDO("mysql:host=$server;dbname=$db", $sqluser, $sqlpass);
+		
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		
+		$ps = $conn->prepare("INSERT INTO Ranking (Time, Date, Manager, Position, ReqNumber, Results) VALUES (:time, :date, :manager, :position, :reqnumber, :results)");
+		$ps->bindParam(":time", $time);
+		$ps->bindParam(":date", $date);
+		$ps->bindParam(":manager", $manager);
+		$ps->bindParam(":position", $position);
+		$ps->bindParam(":reqnumber", $reqnumber);
+		$ps->bindParam(":results", $results);
+		
+		$time = time();
+		$date = date(DATE_RFC2822);
+		$manager = $_GET["manager"];
+		$position = $_GET["position"];
+		$reqnumber = $_GET["number"];
+		
+		$results = "";
+		for ($i = 0; $i < $_GET["count"]; $i++) {
+			$results .= $_GET["res".$i] . ";";
+		}
+		
+		$ps->execute();
+	}
+	catch (PDOException $e) {
+		echo "Connection failed: " . $e->getMessage() . "\n";
+	}
+	
+	$conn = null;
 }
 
 if (isset($_GET["print"])) {
 	submit();
 	
-	echo "open(\"print.html\"+location.search);";
+	echo "<script>open(\"print.html\"+location.search);</script>";
 }
 
 if (isset($_GET["mail"])) {
@@ -28,10 +62,13 @@ if (isset($_GET["mail"])) {
 	}
 	$esc_subj = rawurlencode($subject);
 	$esc_body = rawurlencode($body);
-	echo "location.href = \"mailto:karcher@octa.net?subject=$esc_subj&body=$esc_body\";";
+	echo "<script>location.href = \"mailto:karcher@octa.net?subject=$esc_subj&body=$esc_body\";</script>";
 }
+
+$conn = null;
+
 ?>
-</script>
+
 </body>
 </html>
 
