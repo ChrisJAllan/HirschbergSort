@@ -33,15 +33,15 @@ function reset() {
 	start_comp();
 }
 
-function tog_help() {
+$("#tog").click(function() {
 	if ($("#tog").text() == "hide") {
-		$("#help").addClass("hidden");
+		$("#help").slideUp("fast");
 		$("#tog").text("show");
 	} else {
-		$("#help").removeClass("hidden");
+		$("#help").slideDown("fast");
 		$("#tog").text("hide");
 	}
-}
+});
 
 function start_comp() {
 	if (item == items.length) {
