@@ -70,12 +70,12 @@ function getData() {
 	var ref=firebase.database().ref("Results/");
 	ref.once("value").then(function(snapshot) {
 		snapshot.forEach(function(child) {
-			data += child.val().Date + ",";
-			data += child.val().Position + ",";
-			data += child.val().Manager + ",";
-			data += child.val().ReqNumber + ",";
+			data += "\"" + child.val().Date + "\",";
+			data += "\"" + child.val().Position + "\",";
+			data += "\"" + child.val().Manager + "\",";
+			data += "\"" + child.val().ReqNumber + "\",";
 			child.val().Results.forEach(function(res) {
-				data += res + ",";
+				data += "\"" + res + "\",";
 			});
 			data += newline;
 		})
