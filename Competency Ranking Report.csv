@@ -1,0 +1,40 @@
+<?php
+header("Content-Type: text/csv");
+
+function esc($text) {
+	return preg_replace('/"/', '""', $text);
+}
+
+echo "Competency Ranking Report\r\n";
+echo "\r\n";
+echo "Date,Position,Manager,Number,Results\r\n";
+
+$server = "";
+$db = "";
+$sqluser = "";
+$sqlpass = "";
+
+try {
+	$conn = new PDO("mysql:host=$server;dbname=$db", $sqluser, $sqlpass);
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	
+	$ps = $conn->prepare("SELECT * FROM Ranking");
+	$ps->execute();
+	
+	$results = $ps->fetchAll();
+	foreach ($results as $row) {
+		echo "\"" . esc($row['Date']) . "\",\"" . esc($row['Position']) . "\"," .
+		     "\"" . esc($row['Manager']) . "\",\"" . esc($row['ReqNumber']) . "\",";
+		preg_match_all('/([^;]+);/', $row['Results'], $matches);
+		foreach ($matches[1] as $val) {
+			echo "\"" . esc($val) . "\",";
+		}
+		echo "\r\n";
+	}
+}
+catch (PDOException $e) {
+	echo "Connection failed: " . $e->getMessage() . "\n";
+}
+	
+
+?>

@@ -23,88 +23,9 @@
 	</div>
 	<div id="download" style="display:inherit;padding:1em;">
 		<h2 style="margin-bottom:.5em;">Competency Ranking Report.csv</h2>
-		<table>
-		<tr><!--<td>Flash</td>--><td id="downloadify">You must have Flash 10 installed to download this file.</td></tr>
-		<!--<tr><td>HTML5 (New browsers only, Edge 13+):</td><td><a download="Competency Ranking Report.csv" id="htmldown">Download</a></td></tr>-->
-		</table>
+		<a href="Competency Ranking Report.csv">Download</a>
 	</div>
 </div>
-<div style="position:absolute;bottom:0;">
-<a href="Downloadify/LICENSE.txt">Downloadify License</a>
-</div>
-<script>
-function load() {
-	// Initialize Firebase
-	var config = {
-		apiKey: "AIzaSyAR5mkKau0nYAF7BCrYdB1_EnqmFPlyPf4",
-		authDomain: "hirschbergsort.firebaseapp.com",
-		databaseURL: "https://hirschbergsort.firebaseio.com",
-		storageBucket: "hirschbergsort.appspot.com",
-	};
-	firebase.initializeApp(config);
-	
-	getData();
-}
-
-function login() {
-	firebase.auth().signInWithEmailAndPassword($("#email").val(),
-	                                           $("#pass").val()).catch(function(error) {
-		// Handle Errors here.
-		var errorCode = error.code;
-		var errorMessage = error.message;
-		throw errorMessage;
-	});
-	
-	getData();
-	
-	$("#login").remove();
-	$("#download").css("display", "inherit");
-}
-
-function esc(text) {
-	console.log(text);
-	var reg = /"/g;
-	if (!text) { text = "Undefined"; }
-	return text.replace(reg, "\"\"");
-}
-
-function getData() {
-	var reg = /"/g;
-	var dataurl = "data:text/csv;charset=utf-8,";
-	var newline = "\r\n"
-	var data = "Competency Ranking Report" + newline + newline +
-	           "Date,Position,Manager,Number,Results" + newline;
-	
-	var ref=firebase.database().ref("Results/");
-	ref.once("value").then(function(snapshot) {
-		snapshot.forEach(function(child) {
-			data += "\"" + esc(child.val().Date)      + "\",";
-			data += "\"" + esc(child.val().Position)  + "\",";
-			data += "\"" + esc(child.val().Manager)   + "\",";
-			data += "\"" + esc(child.val().ReqNumber) + "\",";
-			child.val().Results.forEach(function(res) {
-				data += "\"" + esc(res) + "\",";
-			});
-			data += newline;
-		})
-		
-		dataurl += encodeURIComponent(data);
-		Downloadify.create("downloadify", {
-			filename: "Competency Ranking Report.csv",
-			data: data,
-			swf: 'Downloadify/media/downloadify.swf',
-			downloadImage: 'Downloadify/images/download.png',
-			width: 100,
-			height: 30,
-			transparent: true,
-			append: false
-		});
-		//$("#htmldown").attr("href", dataurl);
-	});
-}
- 
-</script>
-<iframe style="display:none;" name="none"></iframe>
 </body>
 </html>
 
