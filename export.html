@@ -3,6 +3,7 @@
 <head>
 	<title>Competency Ranking Report</title>
 	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script type="text/javascript" src="Downloadify/js/swfobject.js"></script>
 	<script type="text/javascript" src="Downloadify/js/downloadify.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -46,8 +47,8 @@ function load() {
 }
 
 function login() {
-	firebase.auth().signInWithEmailAndPassword(document.getElementById("email").value,
-	                                           document.getElementById("pass").value).catch(function(error) {
+	firebase.auth().signInWithEmailAndPassword($("#email").val(),
+	                                           $("#pass").val()).catch(function(error) {
 		// Handle Errors here.
 		var errorCode = error.code;
 		var errorMessage = error.message;
@@ -56,11 +57,19 @@ function login() {
 	
 	getData();
 	
-	document.getElementById("login").remove();
-	document.getElementById("download").style.display = "inherit";
+	$("#login").remove();
+	$("#download").css("display", "inherit");
+}
+
+function esc(text) {
+	console.log(text);
+	var reg = /"/g;
+	if (!text) { text = "Undefined"; }
+	return text.replace(reg, "\"\"");
 }
 
 function getData() {
+	var reg = /"/g;
 	var dataurl = "data:text/csv;charset=utf-8,";
 	var newline = "\r\n"
 	var data = "Competency Ranking Report" + newline + newline +
@@ -69,12 +78,12 @@ function getData() {
 	var ref=firebase.database().ref("Results/");
 	ref.once("value").then(function(snapshot) {
 		snapshot.forEach(function(child) {
-			data += child.val().Date + ",";
-			data += child.val().Position + ",";
-			data += child.val().Manager + ",";
-			data += child.val().ReqNumber + ",";
+			data += "\"" + esc(child.val().Date)      + "\",";
+			data += "\"" + esc(child.val().Position)  + "\",";
+			data += "\"" + esc(child.val().Manager)   + "\",";
+			data += "\"" + esc(child.val().ReqNumber) + "\",";
 			child.val().Results.forEach(function(res) {
-				data += res + ",";
+				data += "\"" + esc(res) + "\",";
 			});
 			data += newline;
 		})
@@ -90,7 +99,7 @@ function getData() {
 			transparent: true,
 			append: false
 		});
-		//document.getElementById("htmldown").href = dataurl;
+		//$("#htmldown").attr("href", dataurl);
 	});
 }
  

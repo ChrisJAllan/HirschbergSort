@@ -3,6 +3,7 @@
 <head>
 	<title>Competency Ranking</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body onload="load()">
 <noscript><h1>This page requires javascript, which is disabled.</h1></noscript>
@@ -14,9 +15,9 @@
 	<tr><td><h2>Hiring Manager:</h2></td><td><input id="manager" name="manager" /></td></tr>
 	<tr><td><h2>Requisition #:</h2></td><td><input id="number" name="number" /></td></tr>
 </table>
-<div class="box" id="help">
-<b>Instructions:</b><span style="float: right;">[<a href="javascript:void(0)" onclick="tog_help()" id="tog">hide</a>]</span><br />
-<ul>
+<div class="box">
+<b>Instructions:</b><span style="float: right;">[<a href="javascript:void(0)" id="tog">hide</a>]</span><br />
+<ul id="help">
 <li>Enter the above information.</li>
 <li>To change the number of results (default of 3) use the selectior at the bottom of the form <i>before</i> comparing items.</li>
 <li>Click the button of the more important competency.</li>
@@ -49,7 +50,6 @@
 </div>
 <iframe name="submit"></iframe>
 <script src="sort.js"></script>
-<script>reset();</script>
 </body>
 </html>
 

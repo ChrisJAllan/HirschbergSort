@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="print.css">
+	<link rel="stylesheet" type="text/css" href="print.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
-<body>
+<body onload="load()">
 <div class="top">
 	<img src="https://octa.net/Images/global/OCTA15_logo.png" class="logo" />
 	<h1 id="title">Competency Importance Results</h1>
 	<span class="logo"></span>
 </div>
 <table class="info">
-	<tr><td><b>Position Title:</b></td><td><?php echo $_GET["position"]; ?></td></tr>
-	<tr><td><b>Hiring Manager:</b></td><td><?php echo $_GET["manager"]; ?></td></tr>
-	<tr><td><b>Requisition #:</b></td><td><?php echo $_GET["number"]; ?></td></tr>
+	<tr><td><b>Position Title:</b></td><td><span><?php echo $_GET["position"]; ?></span></td></tr>
+	<tr><td><b>Hiring Manager:</b></td><td><span><?php echo $_GET["manager"]; ?></span></td></tr>
+	<tr><td><b>Requisition #:</b></td><td><span><?php echo $_GET["number"]; ?></span></td></tr>
 </table>
 <div class="container"><ol id="results">
 <?php
