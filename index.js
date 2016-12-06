@@ -1,5 +1,5 @@
 var item;
-var lead_count = 3;
+var lead_count = 5;
 var leaderboard, dropped;
 var count;
 var min, mid, max;
