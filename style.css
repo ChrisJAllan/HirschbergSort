@@ -74,7 +74,14 @@ input {
 	width: 95%;
 }
 #buttonarea, #resultarea {
-	min-height: 11em;
+	min-height: 10em;
+}
+#progress {
+	text-align: center;
+	font-size: small;
+	font-style: italic;
+	margin: 0;
+	padding: 0;
 }
 iframe {
 	display: none;
