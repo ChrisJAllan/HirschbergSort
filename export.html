@@ -4,8 +4,6 @@
 	<title>Competency Ranking Report</title>
 	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script type="text/javascript" src="Downloadify/js/swfobject.js"></script>
-	<script type="text/javascript" src="Downloadify/js/downloadify.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body onload="load()">
@@ -24,8 +22,7 @@
 	<div id="download" style="display:inherit;padding:1em;">
 		<h2 style="margin-bottom:.5em;">Competency Ranking Report.csv</h2>
 		<table>
-		<tr><!--<td>Flash</td>--><td id="downloadify">You must have Flash 10 installed to download this file.</td></tr>
-		<!--<tr><td>HTML5 (New browsers only, Edge 13+):</td><td><a download="Competency Ranking Report.csv" id="htmldown">Download</a></td></tr>-->
+		<tr><td><a download="Competency Ranking Report.csv" id="htmldown">Download</a></td></tr>
 		</table>
 	</div>
 </div>
@@ -89,17 +86,7 @@ function getData() {
 		})
 		
 		dataurl += encodeURIComponent(data);
-		Downloadify.create("downloadify", {
-			filename: "Competency Ranking Report.csv",
-			data: data,
-			swf: 'Downloadify/media/downloadify.swf',
-			downloadImage: 'Downloadify/images/download.png',
-			width: 100,
-			height: 30,
-			transparent: true,
-			append: false
-		});
-		//$("#htmldown").attr("href", dataurl);
+		$("#htmldown").attr("href", dataurl);
 	});
 }
  
